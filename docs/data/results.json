@@ -1,0 +1,100 @@
+{
+ "models": [
+  {
+   "id": "tinycd",
+   "model": "TinyCD",
+   "precision": 92.65958499983198,
+   "recall": 89.52587853518675,
+   "f1": 91.06578089004631,
+   "iou": 83.59703831734296,
+   "oa": 99.10512715578079,
+   "paper_f1": 91.05,
+   "params": 285128,
+   "gflops": 1.45556,
+   "cpu_ms": 194.355299999188
+  },
+  {
+   "id": "bit",
+   "model": "BIT",
+   "precision": 90.33028540137758,
+   "recall": 89.55610930698259,
+   "f1": 89.94153144546559,
+   "iou": 81.72159092046533,
+   "oa": 98.97958189249039,
+   "paper_f1": 89.31,
+   "params": 3037026,
+   "gflops": 8.755980844,
+   "cpu_ms": 266.33284999934403
+  },
+  {
+   "id": "changeformer",
+   "model": "ChangeFormer V6",
+   "precision": 92.05517000898276,
+   "recall": 88.80469839137778,
+   "f1": 90.40072494046362,
+   "iou": 82.48295884380276,
+   "oa": 99.03924241662025,
+   "paper_f1": 90.4,
+   "params": 41026674,
+   "gflops": 138.796036608,
+   "cpu_ms": 2454.3979999998555
+  }
+ ],
+ "samples": [
+  {
+   "dir": "test_102_9",
+   "title": "Large new development",
+   "f1": {
+    "tinycd": 98.65072963261716,
+    "bit": 98.66842742379224,
+    "changeformer": 98.67031099948291
+   }
+  },
+  {
+   "dir": "test_102_10",
+   "title": "A few new buildings",
+   "f1": {
+    "tinycd": 97.53861003861005,
+    "bit": 97.88949490158882,
+    "changeformer": 98.32428605145151
+   }
+  },
+  {
+   "dir": "test_109_13",
+   "title": "Models disagree",
+   "f1": {
+    "tinycd": 93.39437540876389,
+    "bit": 41.44329896907216,
+    "changeformer": 0.0
+   }
+  },
+  {
+   "dir": "test_19_1",
+   "title": "TinyCD failure case",
+   "f1": {
+    "tinycd": 0.0,
+    "bit": 73.68421052631578,
+    "changeformer": 69.26663840610428
+   }
+  },
+  {
+   "dir": "test_100_1",
+   "title": "No change (clean)",
+   "f1": {
+    "tinycd": 0.0,
+    "bit": 0.0,
+    "changeformer": 0.0
+   }
+  },
+  {
+   "dir": "test_19_3",
+   "title": "No change - TinyCD false alarm",
+   "f1": {
+    "tinycd": 0.0,
+    "bit": 0.0,
+    "changeformer": 0.0
+   }
+  }
+ ],
+ "protocol": "LEVIR-CD256 test split, 2,048 pairs, threshold 0.5, released checkpoints"
+}

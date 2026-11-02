@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TinyCD Live Demo</title>
+<meta name="description" content="Run TinyCD change detection in your browser. No server, no install.">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.3/dist/ort.min.js"></script>
+</head>
+<body>
+<header>
+  <h1>TinyCD <span>live demo</span></h1>
+  <p>Give it two photos of the same place at different times and it marks what changed. The 285,128-parameter model runs
+     <b>entirely in your browser</b>. Nothing is uploaded anywhere.</p>
+</header>
+
+<main>
+<section class="panel">
+  <h2>1. Pick an image pair</h2>
+  <div class="row">
+    <label>Sample (LEVIR-CD test set)
+      <select id="sample"></select>
+    </label>
+    <span class="or">or</span>
+    <label>Your own pair (same size, aerial view)
+      <span class="files"><input type="file" id="fileA" accept="image/*"> <input type="file" id="fileB" accept="image/*"></span>
+      <small>Before, then After</small>
+    </label>
+    <button id="run" disabled>Run TinyCD</button>
+  </div>
+  <p id="status" class="status">Loading model...</p>
+</section>
+
+<section class="panel">
+  <h2>2. Look at the result</h2>
+  <div class="grid">
+    <figure><canvas id="cA"></canvas><figcaption>Before</figcaption></figure>
+    <figure><canvas id="cB"></canvas><figcaption>After</figcaption></figure>
+    <figure><canvas id="cP"></canvas>
+      <figcaption>
+        <select id="view">
+          <option value="tinycd">TinyCD (live, in your browser)</option>
+          <option value="label">Ground truth (samples only)</option>
+          <option value="bit">BIT (saved output, samples only)</option>
+          <option value="changeformer">ChangeFormer (saved output, samples only)</option>
+        </select>
+      </figcaption></figure>
+  </div>
+  <div class="row">
+    <label>Threshold <output id="thOut">0.50</output>
+      <input type="range" id="th" min="0.05" max="0.95" step="0.01" value="0.5"></label>
+    <span id="info" class="muted"></span>
+  </div>
+  <p class="muted">Red = predicted change, drawn on the After image. Raise the threshold to be stricter; lower it to catch more.</p>
+</section>
+
+<section class="panel">
+  <h2>3. How does it compare? (full LEVIR-CD test set, 2,048 image pairs)</h2>
+  <div class="tblwrap">
+  <table id="tbl"><thead><tr><th>Model</th><th>F1 (%)</th><th>Paper F1</th><th>Precision</th><th>Recall</th><th>Parameters</th><th>GFLOPs</th></tr></thead><tbody></tbody></table>
+  </div>
+  <p class="muted">Measured with the authors' released weights, threshold 0.5. TinyCD is about 10x smaller than BIT and 140x smaller than
+     ChangeFormer, yet scores as high or higher on this benchmark.</p>
+</section>
+</main>
+<footer>
+  <a href="https://github.com/shresth-keshari/tinycd-demo">Source code and notebook</a> &middot;
+  Model: Codegoni, Lombardi &amp; Ferrari, <i>TinyCD</i>, Neural Computing and Applications 35 (2023) &middot;
+  Samples: LEVIR-CD (academic use)
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
