@@ -1,7 +1,7 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-weights/
-outputs/
+# weights/
+# outputs/
 *.part
 ~$*
